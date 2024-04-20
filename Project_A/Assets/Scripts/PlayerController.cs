@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
+    public Rigidbody rb;
     float moveSpeed = 5f;
     public float jumpForce = 5f;
 
@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask isGround;
     public LayerMask monsterLayer;
 
-    public bool isPlayerWatchingRight;
-    public bool isJump = true;
+    public bool Jump = false;
+    public Animator an;
+
 
 
     void Start()
@@ -26,42 +27,59 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y <= -5 || Hp <= 0)
+        rb.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y, 0);
+        if (!Jump)
+        {
+            if (rb.velocity.x != 0 && !Jump)
+            {
+                switch (Input.GetAxis("Horizontal"))
+                {
+                    case 1:
+                        an.SetInteger("anim", 1);
+                        break;
+                    case -1:
+                        an.SetInteger("anim", -1);
+                        break;
+                }
+            }
+            else
+            {
+                an.SetInteger("anim", 0);
+            } 
+        }
+        if(Input.GetKeyDown(KeyCode.UpArrow) && !Jump)
+        {
+            Debug.Log("점프");
+            Jump = true;
+            rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            an.SetInteger("anim", 2);
+            an.SetBool("Jump", true);
+        }
+        if (transform.position.y <= -5 || Hp <= 0)
         {
             Die();
         }
-        rb.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
-
-        if(Input.GetKeyDown(KeyCode.UpArrow) && isJump)
-        {
-            rb.velocity = Vector3.zero;
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-            isJump = false;
-        }
-        if (Input.GetAxis("Horizontal") > 0)
-        // 축이 양수 일때 (오른쪽을 바라보고 있을때)
-        {
-            isPlayerWatchingRight = true;
-        }
-
-        if (Input.GetAxis("Horizontal") < 0)
-        // 축이 음수일때 (왼쪽을 바라보고 있을때)
-        {
-            isPlayerWatchingRight = false;
-        }
-        Debug.DrawRay(transform.position, Vector2.down * 1.38f);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isJump = true;
+            if(Jump)
+            {
+                an.SetBool("Jump", false);
+                Jump = false;
+            }
         }
-        Debug.Log(collision.gameObject.tag);
+        
         if (collision.gameObject.tag == "Enemy")
         {
             Hp -= 10;
+        }
+        if (collision.gameObject.tag == "Boss")
+        {
+            Hp -= 50;
         }
     }
 

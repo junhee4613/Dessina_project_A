@@ -32,7 +32,7 @@ public class Attack : MonoBehaviour
         {
             gameObject.SetActive(false);
             //상대방 게임 오브젝트에서 Player_controller 컴포넌트 가져오기
-            EnemyController enemyController = other.GetComponent<EnemyController>();
+            Enemy enemyController = other.GetComponent<Enemy>();
 
             //상대방으로부터 Player_controller 컴포넌트를 가져오는 데 성공했다면
             if (enemyController != null)
