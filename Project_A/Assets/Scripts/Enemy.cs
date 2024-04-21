@@ -1,54 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
     public int Hp = 30;
-    public float speed = 5f;
+    public float speed = 10f;
     Rigidbody rb;
 
-    float rightMax = 10.0f;
-    float leftMax = -10.0f;
-    float currentPosition;
-    float direction = 3.0f;
-
-    Sequence sequence;
-    Tween tween;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentPosition = transform.position.x;
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        currentPosition += Time.deltaTime * direction;
-
-        if (currentPosition >= rightMax)
-        {
-
-            direction *= -1;
-
-            currentPosition = rightMax;
-
-        }
-        else if (currentPosition <= leftMax)
-        {
-
-            direction *= -1;
-
-            currentPosition = leftMax;
-
-        }
-        transform.position = new Vector3(currentPosition, 0, 0);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
         if (transform.position.y <= -5 || Hp <= 0)
         {
             Die();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Right")
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+        }
+        else if (collision.gameObject.tag == "Left")
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            FixedUpdate();
+        }
+        else if (collision.gameObject.tag == "Bullet")
+        {
+            Hp -= 15;
         }
     }
     public void Die()

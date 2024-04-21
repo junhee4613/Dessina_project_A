@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Ground
   - Bullet
+  - Left
+  - Right
+  - Enemy
+  - Boss
+  - Fire
   layers:
   - Default
   - TransparentFX

@@ -20,26 +20,22 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             GameObject bullet = Instantiate(Bullet, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(bullet, 5f);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
-            //상대방 게임 오브젝트에서 Player_controller 컴포넌트 가져오기
-            Enemy enemyController = other.GetComponent<Enemy>();
-
-            //상대방으로부터 Player_controller 컴포넌트를 가져오는 데 성공했다면
-            if (enemyController != null)
-            {
-                //상대방 Player_controller 컴포넌트의 Die() 메서드 실행
-                enemyController.Die();
-            }
+        }
+        if (other.gameObject.tag == "Boss")
+        {
+            gameObject.SetActive(false);
         }
     }
 }

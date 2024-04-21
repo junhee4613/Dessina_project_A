@@ -5,60 +5,60 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody rb;
-    float moveSpeed = 5f;
-    public float jumpForce = 5f;
-
-    public int Hp = 100;
+    public Rigidbody Player_rigidbody;
+    float Speed = 5f;
+    public float jump_force = 8f;
+    public int Player_Hp = 100;
 
     public LayerMask isGround;
     public LayerMask monsterLayer;
 
-    public bool Jump = false;
-    public Animator an;
+    public bool jump = false;
+    public Animator anim;
+
+    private bool isGameover;
 
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        Player_rigidbody = GetComponent<Rigidbody>();
     }
 
 
     void Update()
     {
-        rb.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y, 0);
-        if (!Jump)
+        Player_rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * Speed, Player_rigidbody.velocity.y, 0);
+        if (!jump)
         {
-            if (rb.velocity.x != 0 && !Jump)
+            if (Player_rigidbody.velocity.x != 0 && !jump)
             {
                 switch (Input.GetAxis("Horizontal"))
                 {
                     case 1:
-                        an.SetInteger("anim", 1);
+                        anim.SetInteger("anim", 1);
                         break;
                     case -1:
-                        an.SetInteger("anim", -1);
+                        anim.SetInteger("anim", -1);
                         break;
                 }
             }
             else
             {
-                an.SetInteger("anim", 0);
+                anim.SetInteger("anim", 0);
             } 
         }
-        if(Input.GetKeyDown(KeyCode.UpArrow) && !Jump)
+        if(Input.GetKeyDown(KeyCode.UpArrow) && !jump)
         {
-            Debug.Log("มกวม");
-            Jump = true;
-            rb.velocity = new Vector3(rb.velocity.x, 0, 0);
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-            an.SetInteger("anim", 2);
-            an.SetBool("Jump", true);
+            jump = true;
+            Player_rigidbody.velocity = new Vector3(Player_rigidbody.velocity.x, 0, 0);
+            Player_rigidbody.AddForce(0, jump_force, 0, ForceMode.Impulse);
+            anim.SetInteger("anim", 2);
+            anim.SetBool("jump", true);
         }
-        if (transform.position.y <= -5 || Hp <= 0)
+        if (transform.position.y <= -5 || Player_Hp <= 0)
         {
-            Die();
+            Player_Die();
         }
     }
 
@@ -66,24 +66,39 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if(Jump)
+            if(jump)
             {
-                an.SetBool("Jump", false);
-                Jump = false;
+                anim.SetBool("jump", false);
+                jump = false;
             }
         }
-        
+        if (collision.gameObject.tag == "Right")
+        {
+            if (jump)
+            {
+                anim.SetBool("jump", false);
+                jump = false;
+            }
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
-            Hp -= 10;
+            Player_Hp -= 20;
         }
         if (collision.gameObject.tag == "Boss")
         {
-            Hp -= 50;
+            Player_Hp -= 50;
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Fire")
+        {
+            Player_Hp -= 50;
         }
     }
 
-    void Die()
+    void Player_Die()
     {
         gameObject.SetActive(false);
     }
