@@ -24,7 +24,7 @@ class Pool
     public Pool(GameObject prefab)
     {
         _prefabs = prefab;
-        _pool = new ObjectPool<GameObject>(OnCreate, OnGet);
+        _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy);
     }
     public void Push(GameObject go)
     {
@@ -48,10 +48,41 @@ class Pool
     }
     void OnRelease(GameObject go)
     {
-
+        go.SetActive(false);
+    }
+    void OnDestroy(GameObject go)
+    {
+        GameObject.Destroy(go);
     }
 }
 public class PoolManager : MonoBehaviour
 {
     Dictionary<string, Pool> _pools = new Dictionary<string, Pool>();
+    public GameObject Pop(GameObject prefab)
+    {
+        if(_pools.ContainsKey(prefab.name) == false)
+        {
+            CreatePool(prefab);
+        }
+        return _pools[prefab.name].Pop();
+    }
+    public bool Push(GameObject go)
+    {
+        if(_pools.ContainsKey(go.name) == false)
+        {
+            return false;
+        }
+
+        _pools[go.name].Push(go);
+        return true;
+    }
+    public void Clear()
+    {
+        _pools.Clear();
+    }
+    void CreatePool(GameObject original)
+    {
+        Pool pool = new Pool(original);
+        _pools.Add(original.name, pool);
+    }
 }
