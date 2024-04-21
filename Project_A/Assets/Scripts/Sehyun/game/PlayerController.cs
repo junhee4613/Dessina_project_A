@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     float Speed = 5f;
     public float jump_force = 8f;
     public int Player_Hp = 100;
+    public GameObject PauseScene;
 
     public LayerMask isGround;
     public LayerMask monsterLayer;
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public bool jump = false;
     public Animator anim;
 
-    private bool isGameover;
 
 
 
@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
         Player_rigidbody = GetComponent<Rigidbody>();
     }
 
-
     void Update()
     {
         Player_rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * Speed, Player_rigidbody.velocity.y, 0);
+        
         if (!jump)
         {
             if (Player_rigidbody.velocity.x != 0 && !jump)
@@ -55,6 +55,11 @@ public class PlayerController : MonoBehaviour
             Player_rigidbody.AddForce(0, jump_force, 0, ForceMode.Impulse);
             anim.SetInteger("anim", 2);
             anim.SetBool("jump", true);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseScene.GetComponent<PauseScene>().Pause();
         }
         if (transform.position.y <= -5 || Player_Hp <= 0)
         {
@@ -89,6 +94,10 @@ public class PlayerController : MonoBehaviour
         {
             Player_Hp -= 50;
         }
+        if (collision.gameObject.tag == "Flag")
+        {
+            SceneManager.LoadScene("BossScene");
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -101,5 +110,6 @@ public class PlayerController : MonoBehaviour
     void Player_Die()
     {
         gameObject.SetActive(false);
+        SceneManager.LoadScene("FailScene");
     }
 }

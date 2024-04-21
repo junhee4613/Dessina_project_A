@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class BossController : MonoBehaviour
@@ -37,6 +38,7 @@ public class BossController : MonoBehaviour
         if (Hp <= 0)
         {
             gameObject.SetActive(false);
+            SceneManager.LoadScene("ResultScene");
         }
     }
 

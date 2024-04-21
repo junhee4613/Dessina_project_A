@@ -24,7 +24,7 @@ class Pool
     public Pool(GameObject prefab)
     {
         _prefabs = prefab;
-        _pool = new ObjectPool<GameObject>(OnCreate, OnGet)
+        _pool = new ObjectPool<GameObject>(OnCreate, OnGet);
     }
     public void Push(GameObject go)
     {
