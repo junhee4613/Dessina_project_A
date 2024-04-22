@@ -1838,7 +1838,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179905570}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4fbae73bfe5b73d47ac47033df39e835, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1916,10 +1916,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e7a39da24c46d459df98af03ddaf4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_rigidbody: {fileID: 0}
+  Player_rigidbody: {fileID: 1179905577}
   jump_force: 8
   Player_Hp: 100
   PauseScene: {fileID: 437983969}
+  FailScene: {fileID: 70218237}
   isGround:
     serializedVersion: 2
     m_Bits: 0
@@ -1927,7 +1928,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jump: 0
-  anim: {fileID: 0}
+  anim: {fileID: 2050449697}
 --- !u!114 &1179905576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1968,7 +1969,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!1 &1187174997
 GameObject:
@@ -2737,6 +2738,7 @@ MonoBehaviour:
   jump_force: 8
   Player_Hp: 100
   PauseScene: {fileID: 437983969}
+  FailScene: {fileID: 70218237}
   isGround:
     serializedVersion: 2
     m_Bits: 0
@@ -3626,12 +3628,12 @@ GameObject:
   - component: {fileID: 2017342855}
   - component: {fileID: 2017342854}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: FailScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2017342854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,7 +3852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2067505269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4149,9 +4151,9 @@ SceneRoots:
   - {fileID: 661157220}
   - {fileID: 352171652}
   - {fileID: 1412442214}
+  - {fileID: 1179905571}
   - {fileID: 2067505272}
-  - {fileID: 437983971}
   - {fileID: 2017342857}
+  - {fileID: 437983971}
   - {fileID: 1856814194}
   - {fileID: 70218239}
-  - {fileID: 1179905571}
