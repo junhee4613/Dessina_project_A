@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jump_force = 8f;
     public int Player_Hp = 100;
     public GameObject PauseScene;
+    public GameObject FailScene;
 
     public LayerMask isGround;
     public LayerMask monsterLayer;
@@ -110,6 +111,6 @@ public class PlayerController : MonoBehaviour
     void Player_Die()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("FailScene");
+        FailScene.GetComponent<FailScene>().Over();
     }
 }

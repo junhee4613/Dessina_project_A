@@ -6,22 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BossScene.unity
+    path: Assets/Scenes/Sehyun/BossScene.unity
     guid: 1b0ac50b61f0dcc44b24e469472e9e1c
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/Sehyun/GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/PauseScene.unity
+    path: Assets/Scenes/Sehyun/PauseScene.unity
     guid: a0652724e049fd240b505ca3340c70d1
   - enabled: 1
-    path: Assets/Scenes/ResultScene.unity
+    path: Assets/Scenes/Sehyun/ResultScene.unity
     guid: c5086f0ef8cf92d45bf5cb13775e0b46
   - enabled: 1
-    path: Assets/Scenes/FailScene.unity
+    path: Assets/Scenes/Sehyun/FailScene.unity
     guid: 8d5c7174ff02bb44e883c748d981d222
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Sehyun/MainScene.unity
     guid: ffd31c146e4f5974baa938eb91fc0930
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d890bc610681c954eaef64822a04fcfb, type: 2}

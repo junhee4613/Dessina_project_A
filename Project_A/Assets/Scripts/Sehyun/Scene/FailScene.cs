@@ -7,10 +7,24 @@ using UnityEngine.SceneManagement;
 public class FailScene : MonoBehaviour
 {
     public GameObject gameoverText;
+    public GameObject Canvas_Fail;
+    public string thisScene;
 
+    private void Start()
+    {
+        Canvas_Fail.SetActive(false);
+    }
+
+    public void Over()
+    {
+        thisScene = SceneManager.GetActiveScene().name;
+        Time.timeScale = 0f;
+        Canvas_Fail.SetActive(true);
+    }
     public void GoToGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadSceneAsync(thisScene);
+        Canvas_Fail.SetActive(false);
     }
     public void GoExit()
     {
