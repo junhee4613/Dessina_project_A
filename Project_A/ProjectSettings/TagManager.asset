@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Boss
   - Fire
+  - Flag
   layers:
   - Default
   - TransparentFX

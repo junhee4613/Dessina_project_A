@@ -20,34 +20,25 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
-        if (transform.position.y <= -5 || Hp <= 0)
-        {
-            Die();
-        }
+        
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Right")
+        if (other.gameObject.tag == "Bullet")
+        {
+            gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "Right")
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         }
-        else if (collision.gameObject.tag == "Left")
+        else if (other.gameObject.tag == "Left")
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             FixedUpdate();
-        }
-        else if (collision.gameObject.tag == "Bullet")
-        {
-            Hp -= 15;
-        }
-    }
-    public void Die()
-    {
-        if (Hp <= 0)
-        {
-            gameObject.SetActive(false);
         }
     }
 }
