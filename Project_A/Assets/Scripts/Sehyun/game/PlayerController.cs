@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody Player_rigidbody;
-    float Speed = 5f;
+    float Speed = 8f;
     public float jump_force = 8f;
-    public int Player_Hp = 100;
-    public GameObject PauseScene;
-    public GameObject FailScene;
+    public int Player_Hp = 3;
 
-    public LayerMask isGround;
-    public LayerMask monsterLayer;
+    public GameObject Life1;
+    public GameObject Life2;
+    public GameObject Life3;
+
+    public GameObject Boss;
+    public GameObject Enemy;
 
     public bool jump = false;
     public Animator anim;
 
-
-
-
-    void Start()
+    public void Start()
     {
         Player_rigidbody = GetComponent<Rigidbody>();
+        gameObject.SetActive(true);
+        Life1.SetActive(true);
+        Life2.SetActive(true);
+        Life3.SetActive(true);
+        Enemy.SetActive(true);
+        Boss.SetActive(false);
+        GameManager_SH.Instance.ReStart();
     }
 
     void Update()
@@ -58,11 +64,25 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("jump", true);
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseScene.GetComponent<PauseScene>().Pause();
+            GameManager_SH.Instance.Pause();
         }
-        if (transform.position.y <= -5 || Player_Hp <= 0)
+
+        switch (Player_Hp)
+        {
+            case 2:
+                Life3.SetActive(false);
+                break;
+            case 1:
+                Life2.SetActive(false);
+                break;
+            case 0:
+                Life1.SetActive(false);
+                break;
+        }
+
+        if (transform.position.y <= -15 || Player_Hp <= 0)
         {
             Player_Die();
         }
@@ -78,39 +98,31 @@ public class PlayerController : MonoBehaviour
                 jump = false;
             }
         }
-        if (collision.gameObject.tag == "Right")
-        {
-            if (jump)
-            {
-                anim.SetBool("jump", false);
-                jump = false;
-            }
-        }
-
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Player_Hp -= 20;
-        }
         if (collision.gameObject.tag == "Boss")
         {
-            Player_Hp -= 50;
-        }
-        if (collision.gameObject.tag == "Flag")
-        {
-            SceneManager.LoadScene("BossScene");
+            Player_Hp -= 1;
         }
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Fire")
         {
-            Player_Hp -= 50;
+            Player_Hp -= 1;
+        }
+        if (other.gameObject.tag == "Enemy")
+        {
+            Player_Hp -= 1;
+        }
+        if (other.gameObject.tag == "Flag")
+        {
+            Boss.SetActive(true);
+            gameObject.transform.position = new Vector3(293, 0.3f, 0);
         }
     }
 
     void Player_Die()
     {
         gameObject.SetActive(false);
-        FailScene.GetComponent<FailScene>().Over();
+        GameManager_SH.Instance.Fail();
     }
 }

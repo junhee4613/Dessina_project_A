@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float speed = 8; //탄알 이동 속력
+    public float speed = 10f; //탄알 이동 속력
     private Rigidbody bulletRigidbody;
     public GameObject Bullet;
     public Transform FirePos;
@@ -27,15 +27,4 @@ public class Attack : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            gameObject.SetActive(false);
-        }
-        if (other.gameObject.tag == "Boss")
-        {
-            gameObject.SetActive(false);
-        }
-    }
 }

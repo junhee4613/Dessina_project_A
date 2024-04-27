@@ -12,11 +12,12 @@ TagManager:
   - Boss
   - Fire
   - Flag
+  - Meteorite
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Object
   - Water
   - UI
   - 
