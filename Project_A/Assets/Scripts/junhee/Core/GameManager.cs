@@ -6,4 +6,6 @@ public class GameManager
 {
     public bool game_over = false;
     public float player_hp = 3;
+    public float score = 0;
 }
+
