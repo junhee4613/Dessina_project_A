@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 25f;
     void FixedUpdate()
     {
         transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);

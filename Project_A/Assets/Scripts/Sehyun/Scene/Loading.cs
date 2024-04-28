@@ -9,7 +9,6 @@ public class Loading : MonoBehaviour
     public static string nextScene;
 
     [SerializeField] Image progressBar;
-
     // Start is called before the first frame update
     void Start()
     {

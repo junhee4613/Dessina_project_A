@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
-    public int Hp = 600;
+    public int Hp = 1000;
     public Rigidbody rb;
-    public GameObject ClearScene;
 
     public bool jump;
     public float jump_force = 57f;
@@ -22,7 +21,6 @@ public class BossController : MonoBehaviour
     public Transform FirePos;
     private Transform target;
 
-    public GameObject gameManager;
 
     public float spawnRateMin = 0.5f;
     public float spawnRateMax = 3.0f;
@@ -34,7 +32,6 @@ public class BossController : MonoBehaviour
     {
         jump = false;
         rb = GetComponent<Rigidbody>();
-        ClearScene.SetActive(false);
         timeAfterSpawn = 0f;
         jumpAfterGround = 0f;
         spawnRate = Random.Range(spawnRateMin, spawnRateMax);

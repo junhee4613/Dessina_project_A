@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody Player_rigidbody;
     float Speed = 8f;
-    public float jump_force = 8f;
+    public float jump_force = 10f;
     public int Player_Hp = 3;
 
     public GameObject Life1;
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Boss")
         {
-            Player_Hp -= 1;
+            Player_Die();
         }
     }
     void OnTriggerEnter(Collider other)
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Flag")
         {
             Boss.SetActive(true);
-            gameObject.transform.position = new Vector3(293, 0.3f, 0);
+            gameObject.transform.position = new Vector3(280, 0.3f, 0);
         }
     }
 

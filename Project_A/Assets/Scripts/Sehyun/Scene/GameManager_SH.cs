@@ -102,9 +102,7 @@ public class GameManager_SH : MonoBehaviour
 
     public void Main()
     {
-        Canvas_Pause.SetActive(false);
-        Canvas_Fail.SetActive(false);
-        Canvas_Clear.SetActive(false);
+        Start();
         Loading.LoadScene("MainScene");
     }
 
