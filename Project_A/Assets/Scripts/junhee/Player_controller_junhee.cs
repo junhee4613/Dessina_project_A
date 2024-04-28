@@ -10,6 +10,7 @@ public class Player_controller_junhee : MonoBehaviour
     Vector3 nomalize_speed;
     public float min_speed;
     public Animator an;
+    GameManager_junhee GameManager => GameManager_junhee.instance;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +24,9 @@ public class Player_controller_junhee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Managers.GameManager.player_hp <= 0 && !Managers.GameManager.game_over)
+        if (GameManager.player_hp <= 0 && !GameManager.game_over)
         {
-            Managers.GameManager.game_over = true;
+            GameManager.game_over = true;
             Die();
         }
         Boost(ref boost_force);
@@ -53,12 +54,23 @@ public class Player_controller_junhee : MonoBehaviour
             boost = 0;
         }
     }
-    public void Current_anim()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.tag == "junhee_interaction")
+        {
+            //게이지 차는 로직
+            if(collision.gameObject.TryGetComponent<IScore_obj>(out IScore_obj score))
+            {
+                score.Interaction();
+            }
+            else
+            {
+                GameManager.player_hp -= 1;
+            }
+        }
     }
     public void Die()
     {
-
+        //게임 오버 UI 띄우기
     }
 }
