@@ -38,6 +38,13 @@ public class PlayerController2 : MonoBehaviour
 
     private void Update()
     {
+        if (isDie == true)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // 현재 씬을 다시로드
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
         // 플레이어가 사망 애니메이션 재생 중일 때 이동, 공격이 불가능하게 설정
         if (isDie == true) return;
 
@@ -75,7 +82,11 @@ public class PlayerController2 : MonoBehaviour
         // 적들과 충돌하지 않도록 충돌 박스 삭제
         Destroy(GetComponent<CircleCollider2D>());
 
-        Destroy(GetComponent<MeshRenderer>());
+        foreach (Transform child in transform)
+        {
+            // 하위 오브젝트를 비활성화
+            child.gameObject.SetActive(false);
+        }
 
         //gameObject.SetActive(false);
 
