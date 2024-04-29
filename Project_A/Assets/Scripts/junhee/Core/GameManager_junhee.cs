@@ -10,7 +10,7 @@ public class GameManager_junhee : MonoBehaviour
     public float air_drop_instance_time;
     float time;
     public float score;
-    public Dictionary<string, GameObject> score_objs_pool = new Dictionary<string, GameObject>();
+    public List<GameObject> score_objs_pool = new List<GameObject>();
     public GameObject[] score_objs;
     public int probability;
 
@@ -21,27 +21,45 @@ public class GameManager_junhee : MonoBehaviour
     }
     private void Update()
     {
-        if(air_drop_instance_time <= time)
+        Air_instance();
+    }
+    public void Air_instance()
+    {
+        if (air_drop_instance_time <= time)
         {
             time = 0;
             int num = Random.Range(1, probability);
-            /*if(num == 1)
+            if (num == 1)
             {
                 foreach (var item in score_objs_pool)
                 {
-                    if (item.Key[score_objs[0].gameObject.name])
+                    if (item.name == score_objs_pool[0].name)
+                    {
+                        if (item.activeSelf)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            item.SetActive(true);
+                            //item.transform.position = new Vector3(Random.Range(), Random.Range(), 0);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
-                GameObject.Instantiate(score_objs)
             }
             else
             {
 
-            }*/
+            }
         }
         else
         {
             time += Time.deltaTime;
         }
     }
-
 }

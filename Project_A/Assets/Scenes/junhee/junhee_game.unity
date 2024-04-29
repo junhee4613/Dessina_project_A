@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11890107, g: 0.31091172, b: 0.35299313, a: 1}
+  m_IndirectSpecularColor: {r: 0.11890097, g: 0.3109121, b: 0.352994, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,6 +156,9 @@ MonoBehaviour:
   game_over: 0
   air_drop_instance_time: 0
   score: 0
+  score_objs_pool: []
+  score_objs: []
+  probability: 0
 --- !u!4 &478968165
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 647261467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.64, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -463,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e088cc767943e946a6d3839bd0ced98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 3
 --- !u!1 &1344749648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 087a2ac1c75bbc34aa1d66d7766c1d5b, type: 3}
@@ -486,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e088cc767943e946a6d3839bd0ced98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 3
 --- !u!1 &1842662545
 GameObject:
   m_ObjectHideFlags: 0
