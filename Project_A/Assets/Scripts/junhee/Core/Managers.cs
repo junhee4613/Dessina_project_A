@@ -21,7 +21,6 @@ public class Managers : MonoBehaviour
                 go.AddComponent<Managers>();
             }
             _instance = go.GetComponent<Managers>();
-            DontDestroyOnLoad(go);
         }
     }
 
