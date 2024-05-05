@@ -6,7 +6,7 @@ public class Probs
 {
 
 }
-public interface IScore_obj 
+public interface IInterection_obj 
 {
     public void Interaction();
 }

@@ -7,10 +7,12 @@ public class Player_controller_junhee : MonoBehaviour
     public Rigidbody rb;
     float boost_force;
     public float max_speed;
-    Vector3 nomalize_speed;
+    Vector3 input_nomalize;
     public float min_speed;
+    Collider[] sencer;
     public Animator an;
-    GameManager_junhee GameManager => GameManager_junhee.instance;
+    public CapsuleCollider cc;
+    public LayerMask interection_layer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,27 +26,25 @@ public class Player_controller_junhee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.player_hp <= 0 && !GameManager.game_over)
+        if (Managers.GameManager.player_hp <= 0 && !Managers.GameManager.game_over)
         {
-            GameManager.game_over = true;
+            Managers.GameManager.game_over = true;
             Die();
         }
         Boost(ref boost_force);
+        
     }
     public void Boost(ref float boost)
     {
-        nomalize_speed = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
-        if (nomalize_speed != Vector3.zero)
+        input_nomalize = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
+        if (input_nomalize != Vector3.zero)
         {
-            rb.velocity = new Vector3(nomalize_speed.x, nomalize_speed.y, 0) * boost;
-            if(transform.rotation.y != 90 * nomalize_speed.x && Input.GetAxisRaw("Horizontal") != 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 90 * Input.GetAxisRaw("Horizontal"), 0);
-            }
+            rb.velocity = new Vector3(input_nomalize.x, input_nomalize.y, 0) * boost;
             boost = Mathf.Clamp(boost + Time.deltaTime, min_speed, max_speed);
+            if (Input.GetAxisRaw("Horizontal") != 0)
+                transform.rotation = Quaternion.Euler(0, 90 * Input.GetAxisRaw("Horizontal"), 0);
             an.SetInteger("Action", 1);
             an.speed = (boost * 3) / max_speed;
-
         }
         else
         {
@@ -53,24 +53,29 @@ public class Player_controller_junhee : MonoBehaviour
             rb.velocity = Vector3.zero;
             boost = 0;
         }
+        
     }
-    private void OnCollisionEnter(Collision collision)
+   public void interection_obj()
     {
-        if (collision.gameObject.tag == "junhee_interaction")
+        sencer = Physics.OverlapCapsule(cc.bounds.min, cc.bounds.max, cc.radius, interection_layer);
+        foreach (var item in sencer)
         {
-            //게이지 차는 로직
-            if(collision.gameObject.TryGetComponent<IScore_obj>(out IScore_obj score))
+            if(item.TryGetComponent<IInterection_obj>(out IInterection_obj obj))
             {
-                score.Interaction();
+                obj.Interaction();
             }
             else
             {
-                GameManager.player_hp -= 1;
+                Die();
+            }
+            if(item.gameObject.layer == 6)
+            {
+                Managers.Pool.Push(item.gameObject);
             }
         }
     }
     public void Die()
     {
-        //게임 오버 UI 띄우기
+        Managers.GameManager.game_over = true;
     }
 }
