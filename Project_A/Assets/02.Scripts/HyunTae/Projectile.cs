@@ -3,9 +3,14 @@
 public class Projectile : MonoBehaviour
 {
 	[SerializeField]
-	private	int	damage = 1;
+	private	float damage = 4;
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
+    {
+		damage += 1 / 4 * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 발사체에 부딪힌 오브젝트의 태그가 "Enemy" 이면
 		if ( collision.CompareTag("Enemy") )
