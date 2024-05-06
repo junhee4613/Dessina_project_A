@@ -18,6 +18,12 @@ public class EnemyHP : MonoBehaviour
         enemy2           = GetComponent<Enemy2>();
         spriteRenderer  = GetComponent<SpriteRenderer>();
     }
+    private void Update()
+    {
+        maxHP += 1 * Time.deltaTime / 2;
+        currentHP += 1 * Time.deltaTime / 2;
+
+    }
 
     public void TakeDamage(float damage)
     {

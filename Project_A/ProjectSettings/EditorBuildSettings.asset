@@ -20,5 +20,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YoonHo/GameScene2.unity
     guid: 5bf31fb553c8916449900a42e62155cf
+  - enabled: 1
+    path: Assets/Scenes/HyunTae/Stage01.unity
+    guid: 5f3d5d7eef0bea148b51d85dfdcce7ee
+  - enabled: 1
+    path: Assets/Scenes/HyunTae/MainScene3.unity
+    guid: 01990412e0267824e8432088f1e6147a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d890bc610681c954eaef64822a04fcfb, type: 2}

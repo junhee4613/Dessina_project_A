@@ -45,6 +45,11 @@ public class PlayerController2 : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // 시작 씬을 다시로드
+                SceneManager.LoadScene("MainScene3");
+            }
         // 플레이어가 사망 애니메이션 재생 중일 때 이동, 공격이 불가능하게 설정
         if (isDie == true) return;
 
