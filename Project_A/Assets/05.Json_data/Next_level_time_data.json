@@ -1,0 +1,18 @@
+﻿[
+    {
+        "bullet_mode": "0",
+        "next_level_time": "10"
+    },
+    {
+        "bullet_mode": "1",
+        "next_level_time": "20"
+    },
+    {
+        "bullet_mode": "2",
+        "next_level_time": "30"
+    },
+    {
+        "bullet_mode": "3",
+        "next_level_time": "40"
+    }
+]

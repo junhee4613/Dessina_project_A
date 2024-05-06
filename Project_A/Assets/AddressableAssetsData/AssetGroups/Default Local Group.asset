@@ -16,7 +16,49 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 6b955c9b939256f408223d5490cee3cc
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b638758e524d63744934084271e8548b
+    m_Address: Air_ball
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6d106de7c101d14bb191ed2b0e9de03
+    m_Address: Base_bullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab2273b3a5242f04aa11380e529826a1
+    m_Address: Air_json_data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 974adcff1f77fa04caf77af352b78343
+    m_Address: Bullet_spawn_time_data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f997ecd12463051409cab0b261a0a6e4
+    m_Address: Next_level_time_data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9649d27f81fb9b9438f94924a1c66fee
+    m_Address: Guided_bullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfbdd852422f3184cb6d6ce0764839f9
+    m_Address: Barrage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 459890cf963214b46a20841f1e539b2e, type: 2}
   m_SchemaSet:

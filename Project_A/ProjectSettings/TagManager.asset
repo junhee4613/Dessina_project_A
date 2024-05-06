@@ -18,6 +18,7 @@ TagManager:
   - limitTime
   - Plane
   - Finish Box
+  - enemy
   layers:
   - Default
   - TransparentFX
