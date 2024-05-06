@@ -6,25 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/Sehyun/MainScene.unity
-    guid: ffd31c146e4f5974baa938eb91fc0930
+    path: Assets/01.Scenes/Main_scene.unity
+    guid: af6ea1aec7d18a440a7e3c4086797490
   - enabled: 1
-    path: Assets/01.Scenes/Sehyun/LoadingScene.unity
-    guid: 659c4d67435e7f24487dadc6ca0b7636
+    path: Assets/01.Scenes/junhee/junhee_game.unity
+    guid: be05fa19ce40acb4f91dc451ff169edc
   - enabled: 1
-    path: Assets/01.Scenes/Sehyun/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/01.Scenes/YoonHo/MainScene2.unity
-    guid: ea0187dcc5e873d4683df80594c0e4b5
-  - enabled: 1
-    path: Assets/01.Scenes/YoonHo/GameScene2.unity
-    guid: 5bf31fb553c8916449900a42e62155cf
-  - enabled: 1
-    path: Assets/Scenes/HyunTae/Stage01.unity
+    path: Assets/01.Scenes/HyunTae/Hyun_tae_game.unity
     guid: 5f3d5d7eef0bea148b51d85dfdcce7ee
   - enabled: 1
-    path: Assets/Scenes/HyunTae/MainScene3.unity
-    guid: 01990412e0267824e8432088f1e6147a
+    path: Assets/01.Scenes/Sehyun/Se_hyun_game.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/01.Scenes/YoonHo/Yoon_ho_game.unity
+    guid: 5bf31fb553c8916449900a42e62155cf
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d890bc610681c954eaef64822a04fcfb, type: 2}

@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public float jump_force = 10f;
     public int Player_Hp = 3;
 
-    public GameObject Life1;
-    public GameObject Life2;
-    public GameObject Life3;
+    public Image Life1;
+    public Image Life2;
+    public Image Life3;
 
     public GameObject Boss;
     public GameObject Enemy;
@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     {
         Player_rigidbody = GetComponent<Rigidbody>();
         gameObject.SetActive(true);
-        Life1.SetActive(true);
-        Life2.SetActive(true);
-        Life3.SetActive(true);
+        Life1.gameObject.SetActive(true);
+        Life2.gameObject.SetActive(true);
+        Life3.gameObject.SetActive(true);
         Enemy.SetActive(true);
         Boss.SetActive(false);
         GameManager_SH.Instance.ReStart();
@@ -72,13 +72,13 @@ public class PlayerController : MonoBehaviour
         switch (Player_Hp)
         {
             case 2:
-                Life3.SetActive(false);
+                Life3.gameObject.SetActive(false);
                 break;
             case 1:
-                Life2.SetActive(false);
+                Life2.gameObject.SetActive(false);
                 break;
             case 0:
-                Life1.SetActive(false);
+                Life1.gameObject.SetActive(false);
                 break;
         }
 

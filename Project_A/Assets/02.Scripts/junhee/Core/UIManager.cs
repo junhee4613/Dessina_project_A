@@ -22,7 +22,7 @@ public class UIManager
                 window.Add(obj.name, obj.gameObject);
                 if (obj.transform.GetComponentInChildren<Button>() == true)
                 {
-                    for (int j = 0; j < obj.transform.childCount - 1; j++)
+                    for (int j = 0; j < obj.transform.childCount; j++)
                     {
                         if(obj.transform.GetChild(j).TryGetComponent<Button>(out Button button))
                         {
@@ -30,7 +30,7 @@ public class UIManager
                         }
                     }
                     buttons["Restart"].onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
-                    //buttons["Eixt"].onClick.AddListener(() => SceneManager.LoadScene("Main_scene"));
+                    buttons["Exit"].onClick.AddListener(() => SceneManager.LoadScene("Main_scene"));
                 }
                 obj.gameObject.SetActive(false);
             }

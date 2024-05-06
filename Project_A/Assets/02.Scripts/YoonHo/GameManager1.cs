@@ -55,12 +55,12 @@ public class GameManager1 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("GameScene2");
+            SceneManager.LoadScene("Yoon_ho_game");
         }
 
         if(Input.GetKey(KeyCode.M))
         {
-            SceneManager.LoadScene("MainScene2");
+            SceneManager.LoadScene("Main_scene");
         }
 
     }

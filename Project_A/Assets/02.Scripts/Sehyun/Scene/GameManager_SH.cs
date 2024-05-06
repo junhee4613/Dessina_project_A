@@ -24,8 +24,6 @@ public class GameManager_SH : MonoBehaviour
                 {
                     instance = new GameObject("GameManager").AddComponent<GameManager_SH>();
                 }
-
-                DontDestroyOnLoad(instance);
             }
             return instance;
         }
@@ -103,7 +101,8 @@ public class GameManager_SH : MonoBehaviour
     public void Main()
     {
         Start();
-        Loading.LoadScene("MainScene");
+        SceneManager.LoadScene("Main_scene");
+        //Loading.LoadScene("Main_scene");
     }
 
     public void Pause()
