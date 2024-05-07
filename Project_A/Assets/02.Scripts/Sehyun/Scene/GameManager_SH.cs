@@ -120,6 +120,6 @@ public class GameManager_SH : MonoBehaviour
     
     public void End()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Main_scene");
     }
 }

@@ -67,7 +67,8 @@ public class Player_controller_junhee : MonoBehaviour
    public void interection_obj()
     {
         sencer = Physics.OverlapCapsule(cc.bounds.min, cc.bounds.max, cc.radius, interection_layer);
-        if(sencer.Length != 0)
+        //sencer = Physics.OverlapCapsule(transform.position - (Vector3.up * (cc.bounds.extents.y / 2f)), transform.position + (Vector3.up * (cc.bounds.extents.y / 2f)), interection_layer);
+        if (sencer.Length != 0)
         {
             foreach (var item in sencer)
             {
@@ -78,6 +79,7 @@ public class Player_controller_junhee : MonoBehaviour
                 else
                 {
                     item.gameObject.SetActive(false);
+                    Debug.Log(item.gameObject.transform.position);
                     Die();
                 }
             }
