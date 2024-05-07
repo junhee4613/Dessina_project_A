@@ -78,8 +78,8 @@ public class PropellerBoats : MonoBehaviour
     angle = Mathf.Clamp(angle, -90F, 90F);
   }
 
-  void OnDrawGizmos()
+  /*void OnDrawGizmos()
   {
     Handles.Label(propellers[0].position, engine_rpm.ToString());
-  }
+  }*/
 }
