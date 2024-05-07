@@ -35,7 +35,7 @@ public class Player_controller_junhee : MonoBehaviour
                 Die();
             }
             Boost(ref boost_force);
-            interection_obj();
+            //interection_obj();
         }
         
     }
@@ -66,8 +66,8 @@ public class Player_controller_junhee : MonoBehaviour
     }
    public void interection_obj()
     {
-        sencer = Physics.OverlapCapsule(cc.bounds.min, cc.bounds.max, cc.radius, interection_layer);
-        //sencer = Physics.OverlapCapsule(transform.position - (Vector3.up * (cc.bounds.extents.y / 2f)), transform.position + (Vector3.up * (cc.bounds.extents.y / 2f)), interection_layer);
+        //sencer = Physics.OverlapCapsule(cc.bounds.min, cc.bounds.max, cc.radius, interection_layer);
+        sencer = Physics.OverlapCapsule(transform.position - (Vector3.up * (cc.bounds.extents.y / 2f)), transform.position + (Vector3.up * (cc.bounds.extents.y / 2f)), cc.radius, interection_layer);
         if (sencer.Length != 0)
         {
             foreach (var item in sencer)
@@ -84,7 +84,19 @@ public class Player_controller_junhee : MonoBehaviour
                 }
             }
         }
-        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<IInterection_obj>(out IInterection_obj obj))
+        {
+            obj.Interaction();
+        }
+        else
+        {
+            other.gameObject.SetActive(false);
+            Debug.Log(other.gameObject.transform.position);
+            Die();
+        }
     }
     public void Die()
     {

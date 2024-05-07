@@ -60,6 +60,7 @@ public class Bullet_spawner : MonoBehaviour
             time[0] = 0;
             GameObject temp = Managers.Pool.Pop(Managers.Resource.Load<GameObject>("Base_bullet"));
             temp.transform.position = Random_pos(Random.Range(0, 4));
+            temp.SetActive(true);
             temp.transform.rotation = Quaternion.Euler(0, 90, 0);
             temp.transform.rotation = Quaternion.LookRotation(Managers.GameManager.Player.transform.position - temp.transform.position, Vector3.up);
         }

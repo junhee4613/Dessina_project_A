@@ -64,6 +64,7 @@ public class PoolManager
         {
             CreatePool(prefab);
         }
+
         return _pools[prefab.name].Pop();
     }
     public bool Push(GameObject go)
