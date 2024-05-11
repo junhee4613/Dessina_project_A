@@ -13,7 +13,7 @@ public class Player_controller_junhee : MonoBehaviour
     public Animator an;
     public CapsuleCollider cc;
     public LayerMask interection_layer;
-    public float gauge_decline = 10;
+    public float gauge_decline = 1;
 
     // Start is called before the first frame update
     void Start()
